@@ -1,0 +1,26 @@
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html.dark {
+    background: #121212;
+}
+
+.n-data-table-td.edited {
+    position: relative;
+}
+
+.n-data-table-td.edited::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 8px solid skyblue;
+    border-right: 8px solid transparent;
+    left: 0;
+    top: 0;
+}

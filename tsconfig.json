@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "module": "ESNext",
+        "target": "esnext",
+        "lib": ["DOM", "ESNext"],
+        "strict": true,
+        "jsx": "preserve",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "noUnusedLocals": false,
+        "strictNullChecks": true,
+        "isolatedModules": true,
+        "noImplicitThis": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": [
+            "vite/client",
+            "vite-plugin-pages/client",
+            "vite-plugin-vue-layouts/client",
+            "unplugin-icons/types/vue",
+            "@types/js-cookie"
+        ],
+        "paths": {
+            "~/*": ["src/*"],
+            "~doc/*": ["docs/*"],
+            "~github-markdown/*": ["node_modules/github-markdown-css/*"]
+        }
+    },
+    "exclude": ["dist", "node_modules"]
+}
