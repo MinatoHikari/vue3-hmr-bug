@@ -44,65 +44,7 @@ const getMessage = (customMsg: boolean | string, msg?: string) => {
 export const resHandler = async <T, R = T, RT = void, RR = void>(
     requestResult: FilteredRequestResult<T>,
     config?: ResponseHandlerConfig<T, R, RT, RR>,
-) => {
-    const { err, res, msg, code } = requestResult;
-    const resolvedConfig = {
-        replaceDefaultErrHandler: false,
-        replaceDefaultSuccessHandler: false,
-        successMessage: false,
-        errMessage: true,
-        ...config,
-    };
-    const {
-        onSuccess,
-        onError,
-        replaceDefaultErrHandler,
-        replaceDefaultSuccessHandler,
-        errMessage,
-        successMessage,
-        message,
-        t,
-    } = resolvedConfig;
-    // const existMessage = message ?? globalMessage;
-    //
-    // const existT = t ?? i18nGlobal.global.t;
-
-    // if (err) {
-    //     if (!replaceDefaultErrHandler) {
-    //         if (errMessage) {
-    //             existMessage.error(
-    //                 getMessage(errMessage, msg) ?? existT('request.failed_placeholder'),
-    //             );
-    //         }
-    //     }
-    let onErrorRes: RR | false = false;
-    //     if (onError) {
-    //         onErrorRes = await onError({
-    //             res: requestResult.res as R,
-    //             code: requestResult.code,
-    //             msg: requestResult.msg,
-    //         });
-    //     }
-    //     if ([40100].includes(code)) {
-    //         authErrorCallback(code);
-    //     }
-    return onErrorRes;
-    // }
-    // if (!replaceDefaultSuccessHandler) {
-    //     successMessage &&
-    //         existMessage.success(
-    //             getMessage(successMessage, msg) ?? existT('request.success_placeholder'),
-    //         );
-    // }
-    let onSuccessRes: RT | true = true;
-    // if (onSuccess)
-    //     onSuccessRes = await onSuccess({
-    //         res: requestResult.res as T,
-    //         code: requestResult.code,
-    //         msg: requestResult.msg,
-    //     });
-    return onSuccessRes;
-};
+) => {};
 
 export const useResponseHandler = () => {
     const message = useMessage();

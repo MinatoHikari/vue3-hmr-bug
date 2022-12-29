@@ -1,6 +1,6 @@
 <template>
     <n-space justify="center" align="center">
-        <n-card w-120 mt-20>ssss</n-card>
+        <n-card w-120 mt-20>7777</n-card>
     </n-space>
 </template>
 
