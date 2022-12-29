@@ -9,9 +9,7 @@
                             quaternary
                             type="primary"
                             @click="$router.push('/docs')"
-                        >
-                            {{ $t('page.document.document') }}
-                        </n-button>
+                        ></n-button>
                     </div>
                     <div>
                         <n-dropdown

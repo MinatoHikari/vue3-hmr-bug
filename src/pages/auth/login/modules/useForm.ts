@@ -23,14 +23,7 @@ export const useForm = () => {
 
     const { v$, formData, resetForm } = useFormState();
 
-    const login = async () => {
-        v$.value.$touch();
-        if (!v$.value.$error) {
-            await request.login({
-                ...formData.value,
-            });
-        }
-    };
+    const login = async () => {};
 
     resetForm();
 

@@ -2,8 +2,8 @@
     <n-message-provider>
         <main font-sans text="gray-700 dark:gray-200">
             <n-config-provider
-                :locale="localeObj[localeStr].lang"
-                :date-locale="localeObj[localeStr].date"
+                :locale="localeObj['zh-CN'].lang"
+                :date-locale="localeObj['zh-CN'].date"
                 :theme-overrides="theme"
             >
                 <component :is="isDev ? NThemeEditor : 'div-container'">
@@ -23,8 +23,6 @@ import type { Ref } from 'vue';
 import { NThemeEditor, dateEnUS, dateZhCN, enUS, zhCN } from 'naive-ui';
 import theme from './styles/naive-ui-theme-overrides.json';
 type Locales = 'zh-CN' | 'en-US';
-const { locale } = useTypedI18n();
-const localeStr = locale as Ref<Locales>;
 const localeObj = shallowRef({
     'zh-CN': {
         lang: zhCN,

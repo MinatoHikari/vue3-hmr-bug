@@ -1,8 +1,7 @@
 import { useCommonStore } from '~/stores/common';
-import { router as globalRouter, i18nGlobal } from '~/main';
+import { router as globalRouter } from '~/main';
 import { commonRequests } from '~/requests/common/common.request';
 import { resHandler } from '~/utils/http/handler';
-import { globalMessage } from '~/utils/discreteApi';
 
 export const useUserStore = defineStore('user', () => {
     const commonStore = useCommonStore();
@@ -13,19 +12,12 @@ export const useUserStore = defineStore('user', () => {
         console.log(instanceRouter ? 'instanceRouter' : 'globalRouter');
         await commonStore.clearAuth();
         await router.push('/auth/login');
-        return globalMessage.success(i18nGlobal.global.t('auth.logout_success'));
     };
 
     const logout = async () => {
         if (!commonStore.authToken) {
             await logoutCb();
             return;
-        }
-        const res = await commonRequests.logout();
-        const isSuccess = await resHandler(res);
-        console.log(isSuccess);
-        if (isSuccess) {
-            await logoutCb();
         }
     };
 

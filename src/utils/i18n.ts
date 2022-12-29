@@ -46,8 +46,6 @@ export const initI18nScope = () => {
             store.locale = val;
 
             if (store.authToken) {
-                const res = await commonRequests.switchLang();
-                await resHandler(res);
                 await store.reFetchRoutes();
             }
         });

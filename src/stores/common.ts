@@ -24,15 +24,7 @@ export const useCommonStore = defineStore('common', () => {
         authToken.value = '';
     };
 
-    const reFetchRoutes = async () => {
-        const response = await commonRequests.getRoutes();
-        await resHandler(response, {
-            onSuccess: ({ res }) => {
-                routerMap.clear();
-                formattedRoutes.value = formatRoutes(res);
-            },
-        });
-    };
+    const reFetchRoutes = async () => {};
 
     return {
         authToken,

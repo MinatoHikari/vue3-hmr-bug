@@ -1,16 +1,8 @@
 <template>
     <main p="x4 y10" text="center teal-700 dark:gray-200">
-        <n-result
-            size="large"
-            status="404"
-            title="404"
-            :description="$t('page.error.not_found_des')"
-        >
+        <n-result size="large" status="404" title="404">
             <template #footer>
-                <div text-4xl>{{ $t('page.error.not_found') }}</div>
-                <n-button type="primary" m="3 t8" @click="router.back()">
-                    {{ $t('button.back') }}
-                </n-button>
+                <n-button type="primary" m="3 t8" @click="router.back()"></n-button>
             </template>
         </n-result>
     </main>

@@ -3,8 +3,6 @@ import { useMessage } from 'naive-ui';
 import type { ComposerTranslation } from 'vue-i18n';
 import type { AxiosError } from 'axios';
 import type { FilteredRequestResult } from '~/utils/http/http';
-import { globalMessage } from '~/utils/discreteApi';
-import { i18nGlobal } from '~/main';
 import { useUserStore } from '~/stores/user';
 
 export interface ResponseHandlerConfig<T, R = T, RT = void, RR = void> {
@@ -29,10 +27,6 @@ let message: MessageReactive | null = null;
 const authErrorCallback = (code: number) => {
     const { logoutCb } = useUserStore();
     if (code === 40100) {
-        if (!message)
-            logoutCb().then((m) => {
-                if (!message) message = m;
-            });
     }
 };
 
@@ -112,13 +106,11 @@ export const resHandler = async <T, R = T, RT = void, RR = void>(
 
 export const useResponseHandler = () => {
     const message = useMessage();
-    const { t } = useTypedI18n();
-
     return {
         handler: async <T, R = T>(
             requestResult: FilteredRequestResult<T>,
             config?: ResponseHandlerConfig<T, R>,
-        ) => resHandler(requestResult, { message, t, ...config }),
+        ) => resHandler(requestResult, { message, ...config }),
     };
 };
 
@@ -128,11 +120,5 @@ export const httpErrorHandler = (error: any) => {
     if (error.isAxiosError) {
         const err = error as AxiosError;
         console.log(err.status);
-        if (err.response?.status === 404) {
-            globalMessage.error(i18nGlobal.global.t('request.error.404'));
-        }
-        if (err.response?.status === 403) {
-            globalMessage.error(i18nGlobal.global.t('request.error.403'));
-        }
     }
 };

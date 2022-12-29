@@ -3,7 +3,6 @@ import type { AxiosRequestConfig } from 'axios';
 import { useLoadingBar } from 'naive-ui';
 import type { LoadingBarApiInjection } from 'naive-ui/es/loading-bar/src/LoadingBarProvider';
 import { getForm } from '~/utils/format';
-import { globalLoadingBar } from '~/utils/discreteApi';
 
 export const baseUrl = '/api';
 
@@ -34,15 +33,15 @@ export interface FilteredRequestResult<T> {
 const baseRequest = <T = Record<string, any>>(
     config: RequestConfig,
 ): Promise<FilteredRequestResult<T>> => {
-    const progressBar = config.progressBar ?? globalLoadingBar;
-    progressBar.start();
+    const progressBar = config.progressBar;
+    progressBar?.start();
     return axios(config)
         .then((res) => {
             return res.data as RequestResult;
         })
         .then((data) => {
             if (data.code === 20000) {
-                progressBar.finish();
+                progressBar?.finish();
                 return {
                     res: data.data as T,
                     err: null,
@@ -50,7 +49,7 @@ const baseRequest = <T = Record<string, any>>(
                     code: data.code,
                 };
             } else {
-                progressBar.error();
+                progressBar?.error();
                 return {
                     res: (data.data as T) ?? null,
                     err: data.message ?? true,
